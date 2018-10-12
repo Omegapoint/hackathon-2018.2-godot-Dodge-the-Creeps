@@ -8,7 +8,7 @@ func _ready():
 	# Called when the node is added to the scene for the first time.
 	# Initialization here
     screensize = get_viewport_rect().size
-    #hide()
+    hide()
 
 func _process(delta):
     var velocity = Vector2() # The player's movement vector.

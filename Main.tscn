@@ -9,7 +9,7 @@
 
 bake_interval = 5.0
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, 28869.8, 7745.84, 0, 0, 0, 0, 81992.8, 7409.09, 0, 0, 0, 0, 84602.6, 52702.5, 0, 0, 0, 0, 27775.4, 53544.4, 0, 0, 0, 0, 28869.8, 7745.84 )
+"points": PoolVector2Array( 0, 0, 0, 0, 5, 4.39998, 0, 0, 0, 0, 482, 7.39998, 0, 0, 0, 0, 479, 722.4, 0, 0, 0, 0, 4, 722.4, 0, 0, 0, 0, 5, 4.39998 )
 }
 
 [node name="Main" type="Node"]
@@ -46,15 +46,17 @@ autostart = false
 position = Vector2( 240, 450 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="MobPath" type="Path2D" parent="." index="5"]
+[node name="HUD" parent="." index="5" instance=ExtResource( 4 )]
+
+[node name="MobPath" type="Path2D" parent="." index="6"]
 
 self_modulate = Color( 0.5, 0.6, 1, 0.7 )
 curve = SubResource( 1 )
 
-[node name="PathFollow2D" type="PathFollow2D" parent="MobPath" index="0"]
+[node name="MobSpawnLocation" type="PathFollow2D" parent="MobPath" index="0"]
 
-position = Vector2( 28869.8, 7745.84 )
-rotation = -0.00594328
+position = Vector2( 5, 4.39998 )
+rotation = 0.00628919
 offset = 0.0
 h_offset = 0.0
 v_offset = 0.0
@@ -63,7 +65,13 @@ cubic_interp = true
 loop = true
 lookahead = 4.0
 
-[node name="HUD" parent="." index="6" instance=ExtResource( 4 )]
+[connection signal="hit" from="Player" to="." method="game_over"]
+
+[connection signal="timeout" from="MobTimer" to="." method="_on_MobTimer_timeout"]
+
+[connection signal="timeout" from="ScoreTimer" to="." method="_on_ScoreTimer_timeout"]
+
+[connection signal="timeout" from="StartTimer" to="." method="_on_StartTimer_timeout"]
 
 [connection signal="start_game" from="HUD" to="." method="_on_HUD_start_game"]
 
