@@ -52,3 +52,12 @@ func start(pos):
 	position = pos
 	show()
 	$CollisionShape2D.disabled = false 
+
+#func game_over():
+	#$ScoreTimer.stop()
+	#$MobTimer.stop()
+
+#func new_game():
+	#score = 0
+	#$Player.start($StartPosition.position)
+	
