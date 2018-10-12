@@ -7,11 +7,15 @@ func show_message(text):
     $MessageLabel.show()
     $MessageTimer.start()
 
-func show_game_over():
-    show_message("Game Over!")
-    yield($MessageTimer, "timeout")
+func show_game_over(highscore_list):
+    $MessageLabel.text = ""
+    var highscore_size = 3
+    if highscore_list.size() < 3: 
+        highscore_size = highscore_list.size()
+    for i in highscore_size:
+        $MessageLabel.text += highscore_list[i][1] + " - " + str(highscore_list[i][0]) + "\n"
     $StartButton.show()
-    $MessageLabel.text = "Dodge the\nCreeps"
+    $NameInput.show()
     $MessageLabel.show()
 
 func update_score(score):
@@ -22,5 +26,6 @@ func _on_MessageTimer_timeout():
 
 
 func _on_StartButton_pressed():
-    $StartButton.hide()
+    $StartButton.hide() 
+    $NameInput.hide()
     emit_signal("start_game")

@@ -5,11 +5,13 @@ extends Node
 # var b = "textvar"
 export (PackedScene) var Mob
 var score
+var highscore_list
 
 func _ready():
 	# Called when the node is added to the scene for the first time.
 	# Initialization here
 	randomize()
+	highscore_list = []
 
 #func _process(delta):
 #	# Called every frame. Delta is time since last frame.
@@ -18,12 +20,22 @@ func _ready():
 
 
 func game_over():
+	addHighscore($Player.nick, score)
 	$ScoreTimer.stop()
 	$MobTimer.stop()
-	$HUD.show_game_over()
+	$HUD.show_game_over(highscore_list)
 	$Music.stop()
 	$DeathSound.play()
 
+func addHighscore(nick, score):
+	var highscore_entry = [score,nick]
+	highscore_list.append(highscore_entry)
+	highscore_list.sort_custom(self, "compareScores")
+	
+func compareScores(a, b):
+	if (a[0] > b[0]):
+		return true
+	return false
 
 
 func _on_HUD_start_game():
@@ -33,6 +45,7 @@ func new_game():
 	score = 0
 	$DeathSound.stop()
 	$Music.play()
+	$Player.nick= $HUD/NameInput.text
 	$Player.start($StartPosition.position)
 	$StartTimer.start()
 	$HUD.update_score(score)

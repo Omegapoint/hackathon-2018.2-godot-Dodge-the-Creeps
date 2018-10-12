@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://HUD.gd" type="Script" id=1]
 [ext_resource path="res://fonts/Xolonium-Regular.ttf" type="DynamicFontData" id=2]
@@ -22,6 +22,14 @@ _sections_unfolded = [ "Font", "Settings" ]
 [sub_resource type="DynamicFont" id=1]
 
 size = 64
+use_mipmaps = false
+use_filter = false
+font_data = ExtResource( 2 )
+_sections_unfolded = [ "Font", "Settings" ]
+
+[sub_resource type="DynamicFont" id=4]
+
+size = 40
 use_mipmaps = false
 use_filter = false
 font_data = ExtResource( 2 )
@@ -67,9 +75,9 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = -53.0
-margin_top = 161.0
+margin_top = 131.0
 margin_right = 523.0
-margin_bottom = 398.0
+margin_bottom = 368.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
@@ -91,10 +99,10 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 134.0
-margin_top = 392.0
-margin_right = 334.0
-margin_bottom = 492.0
+margin_left = 136.0
+margin_top = 507.0
+margin_right = 336.0
+margin_bottom = 607.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 focus_mode = 2
@@ -118,6 +126,33 @@ process_mode = 1
 wait_time = 2.0
 one_shot = true
 autostart = false
+
+[node name="NameInput" type="LineEdit" parent="." index="4"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 142.0
+margin_top = 390.0
+margin_right = 327.0
+margin_bottom = 449.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 1
+size_flags_horizontal = 1
+size_flags_vertical = 1
+custom_fonts/font = SubResource( 4 )
+focus_mode = 2
+context_menu_enabled = true
+placeholder_text = "Name"
+placeholder_alpha = 0.6
+caret_blink = false
+caret_blink_speed = 0.65
+caret_position = 0
+_sections_unfolded = [ "Placeholder", "Visibility", "custom_fonts" ]
 
 [connection signal="start_game" from="." to="." method="_on_HUD_start_game"]
 

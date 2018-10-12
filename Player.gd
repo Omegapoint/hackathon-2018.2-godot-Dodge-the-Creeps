@@ -3,6 +3,7 @@ extends Area2D
 signal hit
 export (int) var speed 
 var screensize
+var nick
 
 func _ready():
 	# Called when the node is added to the scene for the first time.
@@ -52,12 +53,4 @@ func start(pos):
 	position = pos
 	show()
 	$CollisionShape2D.disabled = false 
-
-#func game_over():
-	#$ScoreTimer.stop()
-	#$MobTimer.stop()
-
-#func new_game():
-	#score = 0
-	#$Player.start($StartPosition.position)
 	
