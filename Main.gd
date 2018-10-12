@@ -21,6 +21,8 @@ func game_over():
 	$ScoreTimer.stop()
 	$MobTimer.stop()
 	$HUD.show_game_over()
+	$Music.stop()
+	$DeathSound.play()
 
 
 
@@ -29,6 +31,8 @@ func _on_HUD_start_game():
 	
 func new_game():
 	score = 0
+	$DeathSound.stop()
+	$Music.play()
 	$Player.start($StartPosition.position)
 	$StartTimer.start()
 	$HUD.update_score(score)
